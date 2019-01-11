@@ -1,48 +1,56 @@
-package io.udaynbausj.spring;
+package io.spring.java.springjpa;
 
-public class userinfo {
+public class UserInfo {
+    private int age;
     private String name;
-    private String pcName;
-    private int id;
+    private String address;
+    private String desktopName;
     private String favoriteProgrammingLanguage;
-
-
-    public userinfo(String name,String pcName,int id,String favoriteProgrammingLanguage){
+    UserInfo(int age,String name,String address,String desktopName,String favoriteProgrammingLanguage){
+        this.age = age;
         this.name = name;
-        this.pcName = pcName;
-        this.id = id;
+        this.address = address;
+        this.desktopName = desktopName;
         this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public int getAge() {
+        return age;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-
-    public void setId(int id){
-        this.id = id;
+    public String getAddress() {
+        return address;
     }
 
-    public int getId(){
-        return id;
-    }
-    public void setPcName(String pcName){
-        this.pcName = pcName;
+    public String getDesktopName() {
+        return desktopName;
     }
 
-    public String getPcName(){
-        return pcName;
-    }
-
-    public void setFavoriteProgrammingLanguage(String favoriteProgrammingLanguage){
-        this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
-    }
-
-    public String getFavoriteProgrammingLanguage(){
+    public String getFavoriteProgrammingLanguage() {
         return favoriteProgrammingLanguage;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDesktopName(String desktopName) {
+        this.desktopName = desktopName;
+    }
+
+    public void setFavoriteProgrammingLanguage(String favoriteProgrammingLanguage) {
+        this.favoriteProgrammingLanguage = favoriteProgrammingLanguage;
     }
 }

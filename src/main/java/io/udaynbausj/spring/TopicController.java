@@ -1,37 +1,56 @@
-package io.udaynbausj.spring;
-
+package io.spring.java.springjpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
 public class TopicController {
     @Autowired
-    private Topicservice topicservice;
-    @RequestMapping("/topics")
-    public List<Topic> getAll(){
-        return topicservice.getAlltopics();
-    }
-    @RequestMapping("/topics/{id}")
-    public Topic getTopic(@PathVariable String id){
-        return topicservice.getTopic(id);
+    private TopicService topicService;
+
+
+    //following function makes a get request
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public ResponseEntity<?> home(){
+        return new ResponseEntity<UserInfo>(topicService.BasicUserInfo(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/topics",method = RequestMethod.POST)
-    public void addTopic(@RequestBody Topic topic){
-        topicservice.addTopic(topic);
+    //following function makes a get request to fetch all topics
+    @RequestMapping(value="/topics",method=RequestMethod.GET)
+    public List<Topic> getTopics(){
+        return topicService.getTopics();
+    }
+
+    //following function makes a get request to a particular id
+    @RequestMapping(value = "/topics/{id}",method = RequestMethod.GET)
+    public Topic getTopicWithId(@PathVariable long id){
+        return topicService.getTopicWithId(id);
+    }
+//
+//    @RequestMapping(value="/topics/{name}",method = RequestMethod.GET)
+//    public Topic getTopicWithName(@PathVariable String name){
+//        return topicService.getTopicWithName(name);
+//    }
+
+
+    @RequestMapping(value = "/topics",method=RequestMethod.POST)
+    public void postTopics(@RequestBody Topic topic){
+        topicService.postTopic(topic);
     }
 
     @RequestMapping(value = "/topics/{id}",method = RequestMethod.PUT)
-    public void updateTopic(@RequestBody Topic topic,@PathVariable String id){
-        topicservice.updateTopic(topic,id);
+    public ResponseEntity<?> putTopic(@RequestBody Topic topic,@PathVariable long id){
+        return topicService.putTopicWithId(topic,id);
     }
 
     @RequestMapping(value = "/topics/{id}",method = RequestMethod.DELETE)
-    public void deleteTopic(@PathVariable String id){
-        topicservice.deleteTopic(id);
+    public ResponseEntity<?> deleteTopic(@PathVariable long id){
+        return topicService.deleteTopicWithId(id);
     }
 }
